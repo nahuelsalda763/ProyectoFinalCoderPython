@@ -9,7 +9,7 @@ class Product(models.Model):
     precio = models.FloatField()
     SKU = models.CharField(max_length=30, unique=True)
     stock = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
+    imagen = models.ImageField(upload_to='producto_image', default='media/producto_image/coca.png')
 
 class Cliente(models.Model):
     #user = 
@@ -37,3 +37,6 @@ class Comentarios(models.Model):
     comentario = models.TextField()
     puntuacion = models.CharField(default=1, choices=opciones, max_length=2)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

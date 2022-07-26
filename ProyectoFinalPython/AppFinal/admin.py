@@ -1,3 +1,6 @@
 from django.contrib import admin
+from AppFinal.models import Product 
+from AppFinal.models import Avatar
 
-# Register your models here.
+admin.site.register(Avatar)
+admin.site.register(Product)
