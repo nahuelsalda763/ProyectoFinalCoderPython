@@ -15,12 +15,6 @@ class Product(models.Model):
 
 class Client(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    phone = models.CharField(max_length=10)
-    mail = models.EmailField()
-    password = models.CharField(max_length=100)
-    direction = models.CharField(max_length=100)
 
 class Coments(models.Model):
 
