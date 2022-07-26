@@ -1,28 +1,30 @@
+from http import client
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
+from requests import options
 
 # Create your models here.
 
 class Product(models.Model):
     name = models.CharField(max_length=40)
-    precio = models.FloatField()
+    price = models.FloatField()
     SKU = models.CharField(max_length=30, unique=True)
     stock = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
+    image = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
 
-class Cliente(models.Model):
-    #user = 
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    telefono = models.CharField(max_length=10)
+class Client(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    surname = models.CharField(max_length=50)
+    phone = models.CharField(max_length=10)
     mail = models.EmailField()
-    contraseña = models.CharField(max_length=100)
-    direccion = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    direction = models.CharField(max_length=100)
 
-class Comentarios(models.Model):
+class Coments(models.Model):
 
-    opciones = ( 
+    options = ( 
     ("1", "1"), 
     ("2", "2"), 
     ("3", "3"), 
@@ -34,6 +36,7 @@ class Comentarios(models.Model):
     ("9", "9"),
     ("10", "10"),
     ) 
-    comentario = models.TextField()
-    puntuacion = models.CharField(default=1, choices=opciones, max_length=2)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    coments = models.TextField()
+    puntuation = models.CharField(default=1, choices=options, max_length=2)
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
