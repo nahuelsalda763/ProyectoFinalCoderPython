@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+    {% extends "AppFinal/padre.html" %}
+    {% block Contenido %}
+    {% for producto in productos %}
+        {% if producto.stock == True %}
+
+    
+            <div class="card" style="width: 18rem">
+                <img src="{{producto.imagen.url}}" class="card-img-top" >
+                <div class="card-body">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+                <p class="card-text">${{producto.precio}}</p>
+                <p class="card-text">{{producto.sku}}</p>
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <a href="/detalle-productos/{{producto.id}}/" class="btn btn-primary">Detalle</a>
+                    {% else %}
+                    <a href="#" class="btn btn-primary">Comprar</a>
+                {% endif %}
+                </div>
+            </div>
+    
+        {% endif %}
+   {% endfor %}
+   <div class="section" style="margin-bottom:5rem">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          {% for descripciones in descripcion %}
+          <div class="media-list">
+            <div>
+              <img class="rounded-circle" style="width: 40px;" src="{{descripciones.imagen}}">
+              <div class="media-body">
+                <div class="d-flex small">
+                   <b>{{descripciones.usuario}}</b>
+                   <div style="margin-left: 1rem;"><i class="fa-solid fa-star"></i>{{descripciones.puntuacion}}</div>
+                </div>
+                <p>{{descripciones.comentario}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% if form %}
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{form}}
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Comentar</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+    {% endblock %}
+
+    
+    
+</body>
+</html>
+
