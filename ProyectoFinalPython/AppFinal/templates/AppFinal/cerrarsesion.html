@@ -7,11 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Iniciar Sesion</button>
-    </form>
-    <a href="{% url 'Registrarse' %}">Resgistrarse</a>
+    <a href="{% url 'Index' %}">Cerrar Sesion</a>
 </body>
 </html>

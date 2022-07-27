@@ -2,7 +2,6 @@ from http import client
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
-from requests import options
 
 # Create your models here.
 
@@ -18,7 +17,7 @@ class Client(models.Model):
 
 class Coments(models.Model):
 
-    options = ( 
+    comentoptions = ( 
     ("1", "1"), 
     ("2", "2"), 
     ("3", "3"), 
@@ -31,6 +30,6 @@ class Coments(models.Model):
     ("10", "10"),
     ) 
     coments = models.TextField()
-    puntuation = models.CharField(default=1, choices=options, max_length=2)
+    puntuation = models.CharField(default=1, choices=comentoptions, max_length=2)
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
