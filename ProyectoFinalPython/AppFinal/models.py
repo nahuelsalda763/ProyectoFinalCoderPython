@@ -9,7 +9,7 @@ class Product(models.Model):
     precio = models.FloatField()
     SKU = models.CharField(max_length=30, unique=True)
     stock = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='producto_image', default='media/producto_image/coca.png')
+    imagen = models.ImageField(upload_to='producto_image', default='coca.png')
 
 class Cliente(models.Model):
     #user = 

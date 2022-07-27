@@ -7,16 +7,20 @@
     <title>Inicio</title>
 </head>
 <body>
+    
     {% extends "AppFinal/padre.html" %}
+    
     {% block Contenido %}
+    
     {% for producto in productos %}
+    
         {% if producto.stock == True %}
 
     
             <div class="card" style="width: 18rem">
                 <img src="{{producto.imagen.url}}" class="card-img-top" >
                 <div class="card-body">
-                <h5 class="card-title">{{producto.nombre}}</h5>
+                <h5 class="card-title">{{producto.name}}</h5>
                 <p class="card-text">${{producto.precio}}</p>
                 <p class="card-text">{{producto.sku}}</p>
                 {% if request.user.is_authenticated and request.user.is_superuser %}
@@ -28,21 +32,23 @@
             </div>
     
         {% endif %}
-   {% endfor %}
+        {% endfor %}
+        {% endblock %}
+    {% block Contenido2 %}
    <div class="section" style="margin-bottom:5rem">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          {% for descripciones in descripcion %}
+          {% for coment in Comentarios %}
           <div class="media-list">
             <div>
-              <img class="rounded-circle" style="width: 40px;" src="{{descripciones.imagen}}">
+              <img class="rounded-circle" style="width: 40px;" src="{{coment.imagen}}">
               <div class="media-body">
                 <div class="d-flex small">
-                   <b>{{descripciones.usuario}}</b>
-                   <div style="margin-left: 1rem;"><i class="fa-solid fa-star"></i>{{descripciones.puntuacion}}</div>
+                   <b>{{coment.usuario}}</b>
+                   <div style="margin-left: 1rem;"><i class="fa-solid fa-star"></i>{{coment.puntuacion}}</div>
                 </div>
-                <p>{{descripciones.comentario}}</p>
+                <p>{{coment.comentario}}</p>
               </div>
             </div>
           </div>

@@ -16,6 +16,18 @@ def nosotros(request):
 def reseñas(request):
     return render(request, "AppFinal/reseñas.html", {})
 
+def productos(request):
+    return render(request,"AppFinal/productos.html", {})
+
+def iniciarsesion(request):
+    return render(request, "AppFinal/iniciarsesion.html", {})
+
+def cerrarsesion(request):
+    return render(request, "AppFinal/cerrarsesion.html", {})
+
+def registrarse(request):
+    return render(request, "AppFinal/registrarse.html", {})
+
 class ProductManage(ListView):
     model = Product
     template_name_suffix = 'AppFinal/index.html'
@@ -75,6 +87,7 @@ def index(request):
      else:
         context ={'errors':'Debes estar logeado para dejar un comentario'}
         return render(request, 'AppFinal/index.html', context=context)
+    
     
         
 
