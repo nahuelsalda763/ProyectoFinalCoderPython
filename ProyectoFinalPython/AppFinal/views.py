@@ -69,52 +69,35 @@ class BlogLogout(LogoutView):
 
 
 def index(request):
-    comentarios = Comentarios.objects.all()
+    # comentarios = Comentarios.objects.all()
     productos = Product.objects.filter(SKU=357)
-    if request.method == 'GET':
-        form = Comentarios_form()
-        context = {'form':form,'descripcion':comentarios,'productos':productos}
-        return render(request, 'AppFinal/index.html', context=context)
-    else:
-     if request.user.is_authenticated: 
-        form = Comentarios_form(request.POST)
-        if form.is_valid():
-            nuevo_descripcion = Comentarios.objects.create(
-                comentario = form.cleaned_data['comentario'],
-                puntuacion = form.cleaned_data['puntuacion'],
-                usuario = request.user,
-                imagen = request.user.usuario_perfil.imagen.url,
-            )
-            context ={'descripcion':comentarios,'productos':productos}
-        return redirect('/#comentarios')
-     else:
-        context ={'errors':'Debes estar logeado para dejar un comentario'}
-        return render(request, 'AppFinal/index.html', context=context)
+    return render(request, 'AppFinal/index.html', {"productos":productos}) 
+    # if request.method == 'GET':
+    #     form = Comentarios_form()
+    #     context = {'form':form,'descripcion':comentarios,'productos':productos}
+    #     return render(request, 'AppFinal/index.html', context=context)
+    # else:
+    #  if request.user.is_authenticated: 
+    #     form = Comentarios_form(request.POST)
+    #     if form.is_valid():
+    #         nuevo_descripcion = Comentarios.objects.create(
+    #             comentario = form.cleaned_data['comentario'],
+    #             puntuacion = form.cleaned_data['puntuacion'],
+    #             usuario = request.user,
+    #             imagen = request.user.usuario_perfil.imagen.url,
+    #         )
+    #         context ={'descripcion':comentarios,'productos':productos}
+    #     return redirect('/#comentarios')
+    #  else:
+    #     context ={'errors':'Debes estar logeado para dejar un comentario'}
+    #     return render(request, 'AppFinal/index.html', context=context)
     
 
     
 def TodosLosProductos(request):
-    comentarios = Comentarios.objects.all()
+    # comentarios = Comentarios.objects.all()
     productos = Product.objects.all()
-    if request.method == 'GET':
-        form = Comentarios_form()
-        context = {'form':form,'descripcion':comentarios,'productos':productos}
-        return render(request, 'AppFinal/productos.html', context=context)
-    else:
-     if request.user.is_authenticated: 
-        form = Comentarios_form(request.POST)
-        if form.is_valid():
-            nuevo_descripcion = Comentarios.objects.create(
-                comentario = form.cleaned_data['comentario'],
-                puntuacion = form.cleaned_data['puntuacion'],
-                usuario = request.user,
-                imagen = request.user.usuario_perfil.imagen.url,
-            )
-            context ={'descripcion':comentarios,'productos':productos}
-        return redirect('/#comentarios')
-     else:
-        context ={'errors':'Debes estar logeado para dejar un comentario'}
-        return render(request, 'AppFinal/productos.html', context=context)
+    return render(request, 'AppFinal/productos.html', {"productos":productos}) 
 
 
 def Busqueda_formu(request):
@@ -127,3 +110,27 @@ def Busqueda_formu(request):
         resultado = []
     
     return render(request, "AppFinal/busqueda.html", {"busqueda_formulario": busqueda_formulario, "resultado": resultado})
+
+
+
+def Reseñas(request):
+    comentarios = Comentarios.objects.all()
+    if request.method == 'GET':
+        form = Comentarios_form()
+        context = {'form':form,'descripcion':comentarios,'productos':productos}
+        return render(request, 'AppFinal/reseñas.html', context=context)
+    else:
+     if request.user.is_authenticated: 
+        form = Comentarios_form(request.POST)
+        if form.is_valid():
+            nuevo_descripcion = Comentarios.objects.create(
+                comentario = form.cleaned_data['Dejanos tu reseña!'],
+                puntuacion = form.cleaned_data['tu puntuacion sobre nuestro proyecto?'],
+                usuario = request.user,
+                imagen = request.user.usuario_perfil.imagen.url,
+            )
+            context ={'descripcion':comentarios,'productos':productos}
+        return redirect('/#comentarios')
+     else:
+        context ={'errors':'Debes estar logeado para dejar un comentario'}
+        return render(request, 'AppFinal/Reseñas.html', context=context)
