@@ -1,14 +1,14 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Verificacion de Stock</title>
 </head>
 <body>
-    {% extends "AppFinal/padre.html" %}A
-    {% block Contenido %}
     {% for producto in productos %}
         {% if producto.stock == True %}
 
@@ -29,8 +29,6 @@
     
         {% endif %}
    {% endfor %}
-   {% endblock %} 
-    
-    
+
 </body>
 </html>

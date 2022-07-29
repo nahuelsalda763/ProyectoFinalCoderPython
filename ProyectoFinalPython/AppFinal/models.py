@@ -13,8 +13,12 @@ class Product(models.Model):
     image = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
 
 class Client(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    rol = models.CharField(max_length= 40, default= "client", editable = False)
+    email = models.EmailField()
+    first_name =  models.CharField(max_length= 40)
+    last_name =  models.CharField(max_length= 40)
+    
 class Coments(models.Model):
 
     comentoptions = ( 

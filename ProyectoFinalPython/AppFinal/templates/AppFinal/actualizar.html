@@ -7,11 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{% url 'Index' %}">Inicio</a>
-    <a href="{% url 'Actualizar' user.id %}">Actualizar Perfil</a>
-    <ul>
-        <li>Nombre de Usuario: {{user.username}}</li>
-    </ul>
-    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
 </body>
 </html>
