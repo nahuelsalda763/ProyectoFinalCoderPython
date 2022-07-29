@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda</title>
+</head>
+<body>
+    {% extends "AppFinal/padre.html" %}
+    {% block Contenido %}
+    
+    
+    Busqueda de producto
+    
+    <form action="" method="GET">
+        {{busqueda_formulario}}
+        <button type="submit">Buscar</button>
+    </form>
+    
+    {% if busqueda_formulario.producto != null %}
+        {% if resultado %}
+            <ul>
+                {% for producto in resultado %}
+                
+                
+                <div class="card" style="width: 18rem">
+                    <img src="{{producto.imagen.url}}" class="card-img-top" >
+                    <div class="card-body">
+                    <h5 class="card-title">{{producto.name}}</h5>
+                    <p class="card-text">${{producto.precio}}</p>
+                    <p class="card-text">{{producto.sku}}</p>
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                        <a href="/detalle-productos/{{producto.id}}/" class="btn btn-primary">Detalle</a>
+                        {% else %}
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    {% endif %}
+                    </div>
+                </div>
+                   
+            {% endfor %}
+                </ul>
+        
+        {% endif %}
+    {% endif %}
+    
+    {% endblock %}
+</body>
+</html>

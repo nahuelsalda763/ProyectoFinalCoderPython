@@ -23,12 +23,13 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/productos"}>productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/nosotros">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/registrarse">signup</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/iniciarsesion">login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/reseñas"}>Reseñas</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'productos' %}"}>productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'busqueda' %}"}>busqueda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'registrarse' %}">signup</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'iniciarsesion' %}">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'reseñas' %}"}>Reseñas</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,7 +39,7 @@
             <div class="text-center my-5">
                 <img class="img-fluid rounded-circle mb-4" src="https://styles.redditmedia.com/t5_5blkvq/styles/communityIcon_t5ji6wuld2z71.jpg?width=256&s=dae99dd907ada5aea7e270a058a6b39805fc6e16" alt="..." />
                 <h1 class="text-white fs-3 fw-bolder">PyCommerce</h1>
-                <p class="text-white-50 mb-0">El kiosco de tu programador de confianza!</p>
+                <p class="text-white-50 mb-0">El kiosco de tus programadores de confianza!</p>
             </div>
         </header>
         

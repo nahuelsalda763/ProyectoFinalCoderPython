@@ -15,3 +15,6 @@ class Comentarios_form(forms.ModelForm):
     class Meta:
         model = Comentarios
         fields = ['comentario','puntuacion']
+
+class Busqueda_form(forms.Form):
+    producto = forms.CharField()

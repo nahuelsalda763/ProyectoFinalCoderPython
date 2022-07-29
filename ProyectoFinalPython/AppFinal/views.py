@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from AppFinal.models import Product, Comentarios
-from AppFinal.forms import Product_form, Comentarios_form 
+from AppFinal.forms import Product_form, Comentarios_form, Busqueda_form
 from django.views.generic import DetailView, DeleteView, UpdateView, CreateView, ListView
 from django.urls import reverse_lazy
 from django.http import Http404
@@ -27,6 +27,9 @@ def cerrarsesion(request):
 
 def registrarse(request):
     return render(request, "AppFinal/registrarse.html", {})
+
+def busqueda(request):
+    return render(request, "AppFinal/busqueda.html", {})
 
 class ProductManage(ListView):
     model = Product
@@ -67,7 +70,7 @@ class BlogLogout(LogoutView):
 
 def index(request):
     comentarios = Comentarios.objects.all()
-    productos = Product.objects.all()
+    productos = Product.objects.filter(SKU=357)
     if request.method == 'GET':
         form = Comentarios_form()
         context = {'form':form,'descripcion':comentarios,'productos':productos}
@@ -88,7 +91,39 @@ def index(request):
         context ={'errors':'Debes estar logeado para dejar un comentario'}
         return render(request, 'AppFinal/index.html', context=context)
     
+
     
-        
+def TodosLosProductos(request):
+    comentarios = Comentarios.objects.all()
+    productos = Product.objects.all()
+    if request.method == 'GET':
+        form = Comentarios_form()
+        context = {'form':form,'descripcion':comentarios,'productos':productos}
+        return render(request, 'AppFinal/productos.html', context=context)
+    else:
+     if request.user.is_authenticated: 
+        form = Comentarios_form(request.POST)
+        if form.is_valid():
+            nuevo_descripcion = Comentarios.objects.create(
+                comentario = form.cleaned_data['comentario'],
+                puntuacion = form.cleaned_data['puntuacion'],
+                usuario = request.user,
+                imagen = request.user.usuario_perfil.imagen.url,
+            )
+            context ={'descripcion':comentarios,'productos':productos}
+        return redirect('/#comentarios')
+     else:
+        context ={'errors':'Debes estar logeado para dejar un comentario'}
+        return render(request, 'AppFinal/productos.html', context=context)
 
 
+def Busqueda_formu(request):
+    busqueda_formulario = Busqueda_form()
+
+    if request.GET:
+        resultado = Product.objects.filter(name=request.GET["producto"]).all()
+
+    else:
+        resultado = []
+    
+    return render(request, "AppFinal/busqueda.html", {"busqueda_formulario": busqueda_formulario, "resultado": resultado})
