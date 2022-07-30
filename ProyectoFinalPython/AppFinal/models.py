@@ -18,7 +18,7 @@ class Client(models.Model):
     email = models.EmailField()
     first_name =  models.CharField(max_length= 40)
     last_name =  models.CharField(max_length= 40)
-    
+
 class Coments(models.Model):
 
     comentoptions = ( 
@@ -37,3 +37,17 @@ class Coments(models.Model):
     puntuation = models.CharField(default=1, choices=comentoptions, max_length=2)
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+"""class WishList(models.Model):
+    user = models.OneToOneField(User)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    class Meta(object):
+        db_table = 'shop_wishlist'
+        verbose_name = _('Wishlist')
+
+class WishlistItem(models.Model):
+
+    wishlist = models.ForeignKey(Wishlist)
+    product = models.ForeignKey(Product)"""
