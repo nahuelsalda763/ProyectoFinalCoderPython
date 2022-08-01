@@ -36,6 +36,9 @@ def detalleproductoss(request):
 
 def confirmacioncompra(request):
     return render(request, "AppFinal/compra.html", {})
+    
+def comprafallida(request):
+    return render(request, "AppFinal/comprafallida.html", {})
 
 
 

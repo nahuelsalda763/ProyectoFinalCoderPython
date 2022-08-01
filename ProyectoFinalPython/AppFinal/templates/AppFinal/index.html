@@ -25,11 +25,13 @@
                 <div class="card-body">
                 <h5 class="card-title">{{producto.name}}</h5>
                 <p class="card-text">${{producto.precio}}</p>
-                <p class="card-text">{{producto.sku}}</p>
+
                 {% if request.user.is_authenticated and request.user.is_superuser %}
-                    <a href="/detalle-productos/{{producto.id}}/" class="btn btn-primary">Detalle</a>
-                    {% else %}
-                    <a href="#" class="btn btn-primary">Comprar</a>
+                  <a href="/compra" class="btn btn-primary">Comprar</a>
+                {% else %}
+                  <a href="/comprafallida" class="btn btn-primary">Comprar</a>
+                  
+                  
                 {% endif %}
                 </div>
             </div>
