@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Compra</title>
 </head>
 <body>
-    
     {% extends "AppFinal/padre.html" %}
-    
     {% block Contenido %}
-    
     <section class="py-5">
-        
         <div class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <h2>login</h2>
-                    <p class="lead"> iniciar sesion </p>
+                    <h2>Compra Realizada con exito!</h2>
+                    <p class="lead">Muchas gracias por tu compra!
+                        El pedido estara llegando mañana. Su factura sera enviada al mail registrado. </p>
+                        <li class="list-inline-item"><a href="{% url 'index' %}">Volver al inicio</a></li>
+                        <li class="list-inline-item"><a href="{% url 'productos' %}">Comprar nuevamente</a></li>
                 </div>
             </div>
         </div>
     </section>
+
     {% endblock %}
 </body>
 </html>

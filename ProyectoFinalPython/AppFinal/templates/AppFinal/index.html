@@ -11,12 +11,15 @@
     {% extends "AppFinal/padre.html" %}
     
     {% block Contenido %}
-    
+    <h1>
+      Productos del día
+    </h1>
     {% for producto in productos %}
     
         {% if producto.stock == True %}
+       
 
-    
+            
             <div class="card" style="width: 18rem">
                 <img src="{{producto.imagen.url}}" class="card-img-top" >
                 <div class="card-body">

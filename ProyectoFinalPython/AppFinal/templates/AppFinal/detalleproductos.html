@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+</head>
+<body>
+    {% extends "AppFinal/padre.html" %}
+    {% block Contenido %}
+    
+            <div class="card" style="width: 18rem">
+                <img src="{{object.imagen.url}}" class="card-img-top" >
+                <div class="card-body">
+                <h5 class="card-title">{{object.nombre}}</h5>
+                <p class="card-text">${{object.precio}}</p>
+                <p class="card-text">{{object.SKU}}</p>
+
+          </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

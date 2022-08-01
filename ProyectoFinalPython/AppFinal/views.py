@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from AppFinal.models import Product, Comentarios
 from AppFinal.forms import Product_form, Comentarios_form, Busqueda_form
 from django.views.generic import DetailView, DeleteView, UpdateView, CreateView, ListView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.http import Http404
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -31,6 +31,20 @@ def registrarse(request):
 def busqueda(request):
     return render(request, "AppFinal/busqueda.html", {})
 
+def detalleproductoss(request):
+    return render(request, "AppFinal/detalleproductos.html", {})
+
+def confirmacioncompra(request):
+    return render(request, "AppFinal/compra.html", {})
+
+
+
+class detalleproductos(DetailView):
+
+    model = Product
+    template_name = "AppFinal/detalleproductos.html"
+
+
 class ProductManage(ListView):
     model = Product
     template_name_suffix = 'AppFinal/index.html'
@@ -54,9 +68,7 @@ class ProductoDelete(DeleteView):
     success_url = reverse_lazy('producto:manage')
 
 
-class DetailView(DetailView):
-    model = Product
-    template_name = 'detalle_productos.html'
+
 
 
 class BlogLogin(LoginView):
@@ -97,14 +109,15 @@ def index(request):
 def TodosLosProductos(request):
     # comentarios = Comentarios.objects.all()
     productos = Product.objects.all()
-    return render(request, 'AppFinal/productos.html', {"productos":productos}) 
+    context = {"productos": productos}
+    return render(request, 'AppFinal/productos.html', context = context) 
 
 
 def Busqueda_formu(request):
     busqueda_formulario = Busqueda_form()
 
     if request.GET:
-        resultado = Product.objects.filter(name=request.GET["producto"]).all()
+        resultado = Product.objects.filter(name__icontains = request.GET["producto"]).all()
 
     else:
         resultado = []
@@ -121,7 +134,7 @@ def Reseñas(request):
         return render(request, 'AppFinal/reseñas.html', context=context)
     else:
      if request.user.is_authenticated: 
-        form = Comentarios_form(request.POST)
+        form = Comentarios_form(request.GET)
         if form.is_valid():
             nuevo_descripcion = Comentarios.objects.create(
                 comentario = form.cleaned_data['Dejanos tu reseña!'],
@@ -130,7 +143,7 @@ def Reseñas(request):
                 imagen = request.user.usuario_perfil.imagen.url,
             )
             context ={'descripcion':comentarios,'productos':productos}
-        return redirect('/#comentarios')
+        return redirect('AppFinal/reseñas.html')
      else:
         context ={'errors':'Debes estar logeado para dejar un comentario'}
-        return render(request, 'AppFinal/Reseñas.html', context=context)
+        return render(request, 'AppFinal/reseñas.html', context=context)

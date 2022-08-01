@@ -23,18 +23,17 @@
             <ul>
                 {% for producto in resultado %}
                 
-                
+
                 <div class="card" style="width: 18rem">
                     <img src="{{producto.imagen.url}}" class="card-img-top" >
                     <div class="card-body">
                     <h5 class="card-title">{{producto.name}}</h5>
                     <p class="card-text">${{producto.precio}}</p>
                     <p class="card-text">{{producto.sku}}</p>
-                    {% if request.user.is_authenticated and request.user.is_superuser %}
-                        <a href="/detalle-productos/{{producto.id}}/" class="btn btn-primary">Detalle</a>
-                        {% else %}
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    {% endif %}
+                    
+
+                    <a href="/compra" class="btn btn-primary">Comprar</a>
+                    
                     </div>
                 </div>
                    
