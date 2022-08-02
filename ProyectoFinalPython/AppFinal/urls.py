@@ -16,6 +16,4 @@ urlpatterns = [
     path ("Cerrar-Sesion/", LogOutClient.as_view(), name= "CerrarSesion"),
     path ('dummy', dummy, name= "dummy"),
     path ("perfil/<int:pk>/", ProfileClient.as_view(), name= "Perfil"),
-
-   
 ]

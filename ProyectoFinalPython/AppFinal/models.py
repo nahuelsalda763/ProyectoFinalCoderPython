@@ -1,8 +1,7 @@
-from http import client
-from pyexpat import model
+
+
 from django.db import models
 from django.contrib.auth.models import User
-from traitlets import default
 
 # Create your models here.
 
@@ -12,6 +11,7 @@ class Product(models.Model):
     SKU = models.CharField(max_length=30, unique=True)
     stock = models.BooleanField(default=True)
     image = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
+
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -37,22 +37,8 @@ class Coments(models.Model):
     coments = models.TextField()
     puntuation = models.CharField(default=1, choices=comentoptions, max_length=2)
     name = models.CharField(max_length=40)
-    created_at = models.DateTimeField(auto_now_add=True)
-
+  
     class Meta:
         verbose_name = 'coment'
         verbose_name_plural = 'comentarios'
 
-"""class WishList(models.Model):
-    user = models.OneToOneField(User)
-    date_created = models.DateTimeField(auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True)
-
-    class Meta(object):
-        db_table = 'shop_wishlist'
-        verbose_name = _('Wishlist')
-
-class WishlistItem(models.Model):
-
-    wishlist = models.ForeignKey(Wishlist)
-    product = models.ForeignKey(Product)"""

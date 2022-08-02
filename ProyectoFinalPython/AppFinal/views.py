@@ -1,12 +1,13 @@
 from dataclasses import fields
 from string import punctuation
 from unicodedata import name
+
+from requests import request
 from AppFinal.models import Client, Product, Coments
 from AppFinal.forms import Coments_form, BusquedaProductos, Client_Form
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.urls import reverse_lazy, reverse
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.shortcuts import get_object_or_404, render
+from django.http import  HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.contrib.auth.models import User
@@ -139,3 +140,4 @@ def Reseñas(request):
             context = {'comentarios':comentarios}
     
     return render(request, 'AppFinal/reseñas.html', context=context)
+
