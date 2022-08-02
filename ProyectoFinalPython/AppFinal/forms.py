@@ -1,4 +1,5 @@
-from AppFinal.models import Coments, Client
+from requests import request
+from AppFinal.models import Coments
 from django import forms
 from django.contrib.auth.models import User  
 from django.core.exceptions import ValidationError  
@@ -10,14 +11,9 @@ class Client_Form(UserCreationForm,forms.ModelForm):
         fields = [ 'username','email', 'first_name', 'last_name']
 
 class Coments_form(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.Textarea(attrs={
-        'class': 'md-textarea form-control',
-        'placeholder': 'Deja tu comentario...',
-        'rows': '4',
-    }))
     class Meta:
         model = Coments
-        fields = ['coments','puntuation']
+        fields = ['coments','puntuation','name']
 
 class BusquedaProductos(forms.Form):
     search = forms.CharField()

@@ -9,39 +9,43 @@
 <body>
     {% extends "AppFinal/padre.html" %}
     {% block Contenido %}
-        <div class="section" style="margin-bottom:5rem">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    {% for descripciones in descripcion %}
-                        <div class="media-list">
-                            <div>
-                            <img class="rounded-circle" style="width: 40px;" src="{{descripciones.imagen}}">
-                            <div class="media-body">
-                                <div class="d-flex small">
-                                <b>{{descripciones.usuario}}</b>
-                                <div style="margin-left: 1rem;"><i class="fa-solid fa-star"></i>{{descripciones.puntuacion}}</div>
-                                </div>
-                                <p>{{descripciones.comentario}}</p>
-                            </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                    {% if form %}
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                    <div class="form-group">
-                        {{form}}
+    <p class="lead"> Dejanos tu reseña!! </p>
+    <div class="section" style="margin-bottom:5rem">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              {% for coment in comentarios %}
+                entre al for
+              <div class="media-list">
+                <div>
+                  <img class="rounded-circle" style="width: 40px;" src="{{coment.imagen}}">
+                  <div class="media-body">
+                    <div class="d-flex small">
+                       <b>{{coment.name}}</b>
+                       <div style="margin-left: 1rem;"><i class="fa-solid fa-star"></i>{{coment.puntuation}}</div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="submit">Comentar</button>
-                    </form>
-                    {% endif %}
+                    <p>{{coment.coments}}</p>
+                  </div>
                 </div>
+              </div>
+              {% endfor %}
+              {% if form %}
+              <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{form}}
                 </div>
+                <button class="btn btn-primary btn-block" type="submit">Comentar</button>
+              </form>
+              {% endif %}
             </div>
-            </div>
-            
-{% endblock %}
+          </div>
+        </div>
+      </div>
+
+
+
+    {% endblock %}
     
 </body>
 </html>

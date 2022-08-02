@@ -1,4 +1,5 @@
 from dataclasses import fields
+from string import punctuation
 from unicodedata import name
 from AppFinal.models import Client, Product, Coments
 from AppFinal.forms import Coments_form, BusquedaProductos, Client_Form
@@ -86,7 +87,7 @@ class DetailView(DetailView):
     model = Product
     template_name = 'detalle_productos.html'
 
-class ComentManage(ListView):
+"""class ComentManage(ListView):
     model = Coments
     template_name_suffix = 'AppFinal/reseñas.html'
 
@@ -112,7 +113,7 @@ class ComentManage(ListView):
                 return render(request, 'AppFinal/reseñas.html', context=context)
 
 
-
+"""
 def busqueda_productos(request):
     busqueda_formulario = BusquedaProductos()
 
@@ -124,3 +125,17 @@ def busqueda_productos(request):
 
     return render(request, "AppFinal/productos.html", {"busqueda_formulario": busqueda_formulario, "productos": productos})
 
+def Reseñas(request):
+    comentarios = Coments.objects.all()
+    if request.method == 'GET':
+        form = Coments_form()
+        context = {'form':form,'comentarios':comentarios}
+    else:
+        form = Coments_form(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            nuevo_descripcion = Coments ( coments = data["coments"], puntuation = data["puntuation"], name = data["name"])
+            nuevo_descripcion.save()
+            context = {'comentarios':comentarios}
+    
+    return render(request, 'AppFinal/reseñas.html', context=context)

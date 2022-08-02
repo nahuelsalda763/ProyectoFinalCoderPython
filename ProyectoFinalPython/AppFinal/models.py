@@ -2,6 +2,7 @@ from http import client
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
+from traitlets import default
 
 # Create your models here.
 
@@ -35,8 +36,12 @@ class Coments(models.Model):
     ) 
     coments = models.TextField()
     puntuation = models.CharField(default=1, choices=comentoptions, max_length=2)
-    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'coment'
+        verbose_name_plural = 'comentarios'
 
 """class WishList(models.Model):
     user = models.OneToOneField(User)
