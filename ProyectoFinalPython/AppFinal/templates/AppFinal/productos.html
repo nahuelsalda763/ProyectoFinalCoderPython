@@ -1,34 +1,52 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificacion de Stock</title>
+    <title></title>
 </head>
 <body>
-    {% for producto in productos %}
-        {% if producto.stock == True %}
+    {% extends "AppFinal/padre.html" %}
+    
+    {% block Contenido %}
+    
+    {% for product in object_list%}
+    
+    
+        {% if product.stock == True %}
 
     
             <div class="card" style="width: 18rem">
-                <img src="{{producto.imagen.url}}" class="card-img-top" >
+                <img src="{{product.image.url}}" class="card-img-top" >
                 <div class="card-body">
-                <h5 class="card-title">{{producto.name}}</h5>
-                <p class="card-text">${{producto.price}}</p>
-                <p class="card-text">{{producto.SKU}}</p>
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text">${{product.precio}}</p>
+                <p class="card-text">{{product.sku}}</p>
                 {% if request.user.is_authenticated and request.user.is_superuser %}
-                    <a href="/detalle-productos/{{producto.id}}/" class="btn btn-primary">Detalle</a>
-                    {% else %}
-                    <a href="#" class="btn btn-primary">Comprar</a>
-                {% endif %}
+                  <a href="/compra" class="btn btn-primary">Comprar</a>
+                  <a href="{% url 'user_wishlist' product.id  %}" class="btn btn-light fw500" role="button" aria-disabled="true">Add to Wish List</a>
+                  
+                {% else %}
+                  <a href="/detalleproductos/{{product.id}}/" class="btn btn-primary">Detalles</a>
+                  <a href="/comprafallida" class="btn btn-primary">Comprar</a>
+                 
+    
+                
+              {% endif %}
                 </div>
             </div>
     
         {% endif %}
-   {% endfor %}
+        {% endfor %}
+        {% endblock %}
 
+    
+    
+
+
+    
 </body>
 </html>

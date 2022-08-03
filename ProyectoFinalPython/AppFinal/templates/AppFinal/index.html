@@ -14,7 +14,7 @@
 
     
             <div class="card" style="width: 18rem">
-                <img src="{{producto.imagen.url}}" class="card-img-top" >
+                <img src="{{product.imagen.url}}" class="card-img-top" >
                 <div class="card-body">
                 <h5 class="card-title">{{producto.name}}</h5>
                 <p class="card-text">${{producto.price}}</p>
@@ -23,6 +23,7 @@
                     <a href="/detalle-productos/{{producto.id}}/" class="btn btn-primary">Detalle</a>
                     {% else %}
                     <a href="#" class="btn btn-primary">Comprar</a>
+                    
                     
                 {% endif %}
                 </div>

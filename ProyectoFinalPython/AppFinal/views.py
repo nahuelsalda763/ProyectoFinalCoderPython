@@ -81,12 +81,12 @@ class ProfileClient(LoginRequiredMixin,UserPassesTestMixin, DetailView):
 
 class ProductManage(ListView):
     model = Product
-    template_name_suffix = 'AppFinal/productos.html'
+    template_name = "AppFinal/productos.html"
 
 
 class DetailView(DetailView):
     model = Product
-    template_name = 'detalle_productos.html'
+    template_name = 'detalle_productos'
 
 """class ComentManage(ListView):
     model = Coments
@@ -141,3 +141,11 @@ def Reseñas(request):
     
     return render(request, 'AppFinal/reseñas.html', context=context)
 
+@login_required
+def add_to_wishlist(request, id):
+    product = get_object_or_404(Product, id=id) # Capturar el ID del producto
+    if product.users_wishlist.filter(id=request.user.client.id).exists(): #busca el item e intenta matchearlo con el id del usuario, si esto concuerda es pq el cliente ya añadio ese producto a la wishlist
+            product.users_wishlist.remove(request.user.client)
+    else:
+        product.users_wishlist.add(request.user) #add the data to the db
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])# redirijos a donde provieneb
