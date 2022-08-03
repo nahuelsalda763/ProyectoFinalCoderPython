@@ -26,9 +26,9 @@
                 <p class="card-text">{{producto.sku}}</p>
                 {% if request.user.is_authenticated and request.user.is_superuser %}
                   <a href="/compra" class="btn btn-primary">Comprar</a>
-                  
-                {% else %}
                   <a href="/detalleproductos/{{producto.id}}/" class="btn btn-primary">Detalles</a>
+                {% else %}
+                  
                   <a href="/comprafallida" class="btn btn-primary">Comprar</a>
                 
                 

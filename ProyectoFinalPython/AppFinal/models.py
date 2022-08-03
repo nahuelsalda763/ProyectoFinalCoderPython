@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     name = models.CharField(max_length=40)
     precio = models.FloatField()
-
+    desc = models.CharField(max_length=200)
     SKU = models.CharField(max_length=30)
     stock = models.BooleanField(default=True)
     imagen = models.ImageField(upload_to='producto_image', default='coca.png')
