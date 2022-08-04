@@ -6,6 +6,7 @@ from http import client
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 
@@ -16,7 +17,8 @@ class Product(models.Model):
     SKU = models.CharField(max_length=30)
     stock = models.BooleanField(default= True)
     image = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
-
+    users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
+   
     class Meta:
         verbose_name = 'producto'
         verbose_name_plural = 'productos'

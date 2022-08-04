@@ -1,5 +1,5 @@
 from django.urls import path
-from AppFinal.views import index, nosotros, Reseñas, ListViewProducts, DetailViewProducts, LogInClient, SignUpClient, UpdateClient, LogOutClient, ProfileClient, dummy, busqueda_productos, confirmacioncompra,comprafallida
+from AppFinal.views import index, nosotros, Reseñas, ListViewProducts, DetailViewProducts, LogInClient, SignUpClient, UpdateClient, LogOutClient, ProfileClient, dummy, busqueda_productos, confirmacioncompra,comprafallida, addWishlist, wishlist
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -19,6 +19,7 @@ urlpatterns = [
     path ("Cerrar-Sesion/", LogOutClient.as_view(), name= "CerrarSesion"),
     path ("perfil/<int:pk>/", ProfileClient.as_view(), name= "Perfil"),
     path ('dummy', dummy, name= "dummy"),
-
+    path ("addWishlist/<int:id>/", addWishlist, name = "user_wishlist"),
+    path ("wishlist/", wishlist, name = "WishList")
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    
+    {% extends "AppFinal/padre.html" %}
+    
+    {% block Contenido %}
+
+    {% if messages %}
+        <div class="alert alert-warning" alert-{{ message.tags }}" role="alert">
+        {% for message in messages  %}
+            {{message|safe}} - <a href="{% url 'WishList' %}" class="alert-link">Your Wishlist</a>.
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if wishlist %}
+  {% for product in wishlist %}
+
+  <div class="card mb-3 rounded-0">
+    <div class="row g-0">
+      <div class="col-md-2">
+          <img class="img-fluid d-block p-2" width="135px" src="{{producto.image.url}}" />
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.price}}</p>
+          <a type="button" class="btn btn-primary fw500 btn-sm" href="{% url 'user_wishlist' product.id %}">Remove from Wishlist</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+  <a href="/compra" class="btn btn-primary">Comprar WishList</a>
+  {% else %}
+  <p class="card-text">Aun no se han agregado productos!</p>
+  {% endif %}
+
+
+
+</div>
+
+{% endblock %}
+</body>
+</html>

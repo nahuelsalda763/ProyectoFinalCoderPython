@@ -17,20 +17,29 @@
     <body>
         <!-- Responsive navbar-->
         
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#!">PyCommerce</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand"  style= "color: #020202" href="#!">PyCommerce</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+                    <span class="navbar-toggler-icon"  ></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Productos' %}"}>productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Busqueda' %}"}>busqueda</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Nosotros' %}">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Registrarse' %}">signup</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'IniciarSesion' %}">login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Reseñas' %}"}>Reseñas</a></li>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+                        <li class="nav-item" ><a class="nav-link active" style= "color: #020202" aria-current="page" href="{% url 'Index' %}">Home</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Productos' %}"}>Productos</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Busqueda' %}"}>Busqueda</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Nosotros' %}">Nosotros</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202"href="{% url 'Registrarse' %}">Registrarse</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'IniciarSesion' %}">Iniciar Sesion</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Reseñas' %}"}>Reseñas</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" style= "color: #020202"  href="{% url 'WishList' %}"}>WishList</a></li>
+                            <li class="nav-item"><a class="nav-link"  style= "color: #020202" href="{% url 'Perfil' user.id %}"}>Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link"  style= "color: #020202" href="{% url 'CerrarSesion' %}"}>Cerrar Sesion</a></li>
+                            
+                        {% endif %}
                     </ul>
+ 
                 </div>
             </div>
         </nav>
@@ -40,11 +49,15 @@
                 <img class="img-fluid rounded-circle mb-4" src="https://styles.redditmedia.com/t5_5blkvq/styles/communityIcon_t5ji6wuld2z71.jpg?width=256&s=dae99dd907ada5aea7e270a058a6b39805fc6e16" alt="..." />
                 <h1 class="text-white fs-3 fw-bolder">PyCommerce</h1>
                 <p class="text-white-50 mb-0">El kiosco de tus programadores de confianza!</p>
-            </div>
+            </div> 
         </header>
-        
+        <div class="text-center my-5">
+            <br>
+        </div>
+
         <!-- Content section-->
         <div class="d-flex" style="margin-bottom:5rem; justify-content: space-evenly;">
+
         {% block Contenido %}
         
 

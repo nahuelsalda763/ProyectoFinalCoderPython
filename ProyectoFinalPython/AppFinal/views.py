@@ -1,7 +1,8 @@
 
 from AppFinal.models import Client, Product, Comment
 from AppFinal.forms import Comment_form, BusquedaProductos, Client_Form
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.http import  HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
@@ -9,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -42,6 +44,7 @@ def TodosLosProductos(request):
 class ListViewProducts(ListView):
     model = Product
     template_name = 'AppFinal/productos.html'
+
 class DetailViewProducts(DetailView):
     model = Product
     template_name = 'AppFinal/detalleproductos.html'
@@ -116,3 +119,20 @@ class ProfileClient(LoginRequiredMixin,UserPassesTestMixin, DetailView):
         return self.request.user.client.id == int(self.kwargs['pk'])
 
 
+@login_required
+def addWishlist(request, id):
+    product = get_object_or_404(Product, id=id) # Capturar el ID del producto
+    if product.users_wishlist.filter(id=request.user.id).exists(): #busca el item e intenta matchearlo con el id del usuario, si esto concuerda es pq el cliente ya añadio ese producto a la wishlist
+            product.users_wishlist.remove(request.user)
+            messages.success(request, product.name + " has been removed from your WishList")
+    else:
+        product.users_wishlist.add(request.user) #add the data to the db
+        messages.success(request, "Added " + product.name + " to your WishList")
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])# redirijos a donde provieneb
+
+@login_required
+def wishlist(request):
+    #collect data from the db about wishlist and user
+    #donde el user agrego el product al wishlist, ver en la tabla del procucto donde matchea con el user
+    products = Product.objects.filter(users_wishlist = request.user)
+    return render(request, 'AppFinal/user_wishlist.html', {"wishlist" : products})
