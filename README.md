@@ -1,12 +1,14 @@
 # PyCommerce
 
-En este proyecto, nuestro equipo busco la mejor manera de poder representar como seria un eCommerce, en forma de kiosco.
+En este proyecto, nuestro equipo busca la mejor forma de representar como seria un eCommerce, en forma de kiosco, ambientado en CoderHouse.
 Dentro de el, podras hacer lo siguiente:
 
 - Crear, editar y borrar articulos en venta.
 - Seleccionar articulos y dejarlos en un carrito hasta ser comprados.
 - Crearte un usuario para tener tu propio carrito de compras.
 - Dejar una reseña de tu opinion sobre el servicio 
+
+(Aclaracion: Los productos destacados/del dia son los que tengan SKU: 357 . Esto lo realizamos bajo el criterio de que no siempre los productos destacados son los mas visitados o vendidos como te quieren hacer creer, sino que es lo que ellos quieren que veas.)
 
 # Instalacion 
 
