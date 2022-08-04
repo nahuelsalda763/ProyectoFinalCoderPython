@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reseñas</title>
+</head>
+<body>
+    {% extends "AppFinal/padre.html" %}
+    {% block Contenido %}
+    <p class="lead"> Dejanos tu reseña!! </p>
+    <div class="section" style="margin-bottom:5rem">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              {% for comment in comentarios %}
+        
+              <div class="media-list">
+                <div>
+                  <img class="rounded-circle" style="width: 40px;" src="{{comment.imagen}}">
+                  <div class="media-body">
+                    <div class="d-flex small">
+                       <b>{{comment.name}}</b>
+                       <div style="margin-left: 1rem;"><i class="fa-solid fa-star"></i> Puntuacion: {{comment.punctuation}}</div>
+                    </div>
+                    <p>{{comment.comments}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              {% if form %}
+              <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{form}}
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Comentar</button>
+              </form>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    {% endblock %}
+    
+</body>
+</html>
