@@ -14,7 +14,7 @@ class Product(models.Model):
     stock = models.BooleanField(default=True)
     image = models.ImageField(upload_to='producto_image', default='producto_image/descarga.png')
     users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
-
+    
     class Meta:
         verbose_name = 'product'
         verbose_name_plural = 'productos'

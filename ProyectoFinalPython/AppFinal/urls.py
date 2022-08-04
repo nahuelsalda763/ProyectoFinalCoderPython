@@ -1,6 +1,6 @@
 from xml.etree.ElementInclude import include
 from django.urls import path
-from AppFinal.views import index, nosotros, Reseñas, ProductManage, LogInClient, SignUpClient, UpdateClient, LogOutClient, ProfileClient, dummy, busqueda_productos, add_to_wishlist
+from AppFinal.views import index, nosotros, Reseñas, ProductManage, LogInClient, SignUpClient, UpdateClient, LogOutClient, ProfileClient, dummy, busqueda_productos, add_to_wishlist, wishlist
 
 
 
@@ -16,5 +16,7 @@ urlpatterns = [
     path ("Cerrar-Sesion/", LogOutClient.as_view(), name= "CerrarSesion"),
     path ('dummy', dummy, name= "dummy"),
     path ("perfil/<int:pk>/", ProfileClient.as_view(), name= "Perfil"),
-    path ("wishlist/add_to_wishlist/<int:id>", add_to_wishlist, name = "user_wishlist")
+    path ("wishlist/add_to_wishlist/<int:id>", add_to_wishlist, name = "user_wishlist"),
+    path ("wishlist/", wishlist, name = "wishlist")
+
 ]

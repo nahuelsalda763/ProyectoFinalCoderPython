@@ -1,6 +1,7 @@
 from dataclasses import fields
 from string import punctuation
 from unicodedata import name
+from numpy import product
 
 from requests import request
 from AppFinal.models import Client, Product, Coments
@@ -149,3 +150,11 @@ def add_to_wishlist(request, id):
     else:
         product.users_wishlist.add(request.user) #add the data to the db
     return HttpResponseRedirect(request.META["HTTP_REFERER"])# redirijos a donde provieneb
+
+@login_required
+def wishlist(request):
+    #collect data from the db about wishlist and user
+    #donde el user agrego el product al wishlist, ver en la tabla del procucto donde matchea con el user
+    products = Product.objects.filter(users_wishlist = request.user)
+
+    return render(request, 'AppFinal/wishlist.html', {"wishlist" : products})
