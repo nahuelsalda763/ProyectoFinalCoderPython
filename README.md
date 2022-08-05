@@ -62,6 +62,18 @@ windows:
 c:\> python mananage.py migrate
 ```
 
+Crear Superuser
+Mac os:
+```bash
+> python3 mananage.py createsuperuser
+(Pedira usuario email y contraseña)
+```
+windows:
+```bash
+c:\> python mananage.py createsuperuser
+(Pedira usuario email y contraseña)
+```
+
 ### Ejecutar el servidor
 Mac os
 ```bash
