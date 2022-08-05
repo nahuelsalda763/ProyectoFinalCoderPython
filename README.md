@@ -62,7 +62,7 @@ windows:
 c:\> python mananage.py migrate
 ```
 
-###Crear Superuser
+Crear Superuser
 Mac os:
 ```bash
 > python3 mananage.py createsuperuser
