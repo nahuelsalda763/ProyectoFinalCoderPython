@@ -12,16 +12,19 @@
     {% block Contenido %}
     <section class="py-5">
         <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <a href="{% url 'Index' %}">Inicio</a>
-                    <a href="{% url 'Actualizar' user.id %}">Actualizar Perfil</a>
+            
                     <ul>
-                        <li>Nombre de Usuario: {{user.username}}</li>
+                        <a class="nav-link"   href="{% url 'Index' %}"}>Inicio</a></li>
+                        <a class="nav-link" href="{% url 'Actualizar' user.id %}"}>Actualizar Perfil</a></li>
+                        <a class="nav-link"   href="{% url 'WishList' %}"}>WishList</a></li>
                     </ul>
-                    
-                </div>
-            </div>
+                    <ul>
+                        <li>User: {{user.username}}</li>
+                        <li>Email: {{user.email}}</li>
+                        <li>Nombre: {{user.first_name}}</li>
+
+                    </ul>   
+            
         </div>
     </section>
     {% endblock %}
