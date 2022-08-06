@@ -1,3 +1,7 @@
+https://youtu.be/XJH_pPak60E
+
+
+
 # PyCommerce
 
 En este proyecto, nuestro equipo busca la mejor forma de representar como seria un eCommerce, en forma de kiosco, ambientado en CoderHouse.
