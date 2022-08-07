@@ -12,7 +12,11 @@ Dentro de el, podras hacer lo siguiente:
 - Crearte un usuario para tener tu propio carrito de compras.
 - Dejar una reseña de tu opinion sobre el servicio 
 
-(Aclaracion: Los productos destacados/del dia son los que tengan SKU: 357 . Esto lo realizamos bajo el criterio de que no siempre los productos destacados son los mas visitados o vendidos como te quieren hacer creer, sino que es lo que ellos quieren que veas.)
+# Aclaraciones:
+Para tener el rango de owner y poder modificar, eliminar y crear productos, deberas de ir al panel de localhost:8000/admin y cambiar el permiso de tu perfil. (Entrar a AppFinal/Clients, ingresas al ultimo creado que sera el tuyo, y en rol cambias de cliente a owner)
+
+Los productos destacados/del dia son los que tengan SKU: 357 . Esto lo realizamos bajo el criterio de que no siempre los productos destacados son los mas visitados o vendidos como te quieren hacer creer, sino que es lo que ellos quieren que veas.)
+
 
 # Instalacion 
 
