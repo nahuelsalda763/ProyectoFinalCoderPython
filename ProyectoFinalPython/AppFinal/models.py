@@ -25,7 +25,7 @@ class Product(models.Model):
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    rol = models.CharField(max_length= 40, default= "client", editable = False)
+    rol = models.CharField(max_length= 40, default= "client")
     email = models.EmailField()
     first_name =  models.CharField(max_length= 40)
     last_name =  models.CharField(max_length= 40)

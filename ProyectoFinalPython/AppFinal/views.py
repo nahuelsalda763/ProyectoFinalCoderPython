@@ -1,16 +1,18 @@
 
+from http import client
 from AppFinal.models import Client, Product, Comment
 from AppFinal.forms import Comment_form, BusquedaProductos, Client_Form
 from django.shortcuts import get_object_or_404, render
 from django.http import  HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 
 # Create your views here.
 
@@ -35,12 +37,26 @@ def Reseñas(request):
             context = {'comentarios':comentarios}
     
     return render(request, 'AppFinal/reseñas.html', context=context)
-"""
-def TodosLosProductos(request):
-    productos = Product.objects.all()
-    context = {"productos": productos}
-    return render(request, 'AppFinal/productos.html', context = context) 
-"""
+
+
+class CreateProduct(LoginRequiredMixin, CreateView):
+
+    model = Product
+    success_url = reverse_lazy("Productos")
+    fields = ["name", "price", "desc", "SKU", "stock", "image"]
+
+
+class UpdateProduct(LoginRequiredMixin, UpdateView):
+    model = Product
+    template_name = 'AppFinal/actualizarProducto.html'
+    fields = ["name", "price", "desc","SKU","stock","image"]
+    success_url = reverse_lazy("Productos")
+
+class DeleteProduct(LoginRequiredMixin,DeleteView):
+    model = Product
+    template_name ='AppFinal/eliminarProducto.html'
+    success_url = reverse_lazy("Productos")
+
 class ListViewProducts(ListView):
     model = Product
     template_name = 'AppFinal/productos.html'
@@ -48,6 +64,7 @@ class ListViewProducts(ListView):
 class DetailViewProducts(DetailView):
     model = Product
     template_name = 'AppFinal/detalleproductos.html'
+
 
 def confirmacioncompra(request):
     return render(request, "AppFinal/compra.html", {})

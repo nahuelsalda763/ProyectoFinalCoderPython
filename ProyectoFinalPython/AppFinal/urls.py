@@ -1,5 +1,5 @@
 from django.urls import path
-from AppFinal.views import index, nosotros, Reseñas, ListViewProducts, DetailViewProducts, LogInClient, SignUpClient, UpdateClient, LogOutClient, ProfileClient, dummy, busqueda_productos, confirmacioncompra,comprafallida, addWishlist, wishlist
+from AppFinal.views import index, nosotros, Reseñas, ListViewProducts, DetailViewProducts, LogInClient, SignUpClient, UpdateClient, LogOutClient, ProfileClient, dummy, busqueda_productos, confirmacioncompra,comprafallida, addWishlist, wishlist, CreateProduct, DeleteProduct, UpdateProduct
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -10,6 +10,9 @@ urlpatterns = [
     path ('reseñas/', Reseñas, name = "Reseñas"),
     path ('productos/', ListViewProducts.as_view(), name = "Productos"),
     path ('detalleproductos/<int:pk>/', DetailViewProducts.as_view(), name="DetalleProductos" ),
+    path ('nuevoProducto/', CreateProduct.as_view(), name = "NuevoProducto"),
+    path ('eliminarProducto/<int:pk>/', DeleteProduct.as_view(), name = "EliminarProducto"),
+    path ('actualizarProducto/<int:pk>/', UpdateProduct.as_view(), name = "ActualizarProducto"),
     path ('busqueda/',  busqueda_productos , name="Busqueda"),
     path ('compra/', confirmacioncompra),
     path ('comprafallida/', comprafallida),

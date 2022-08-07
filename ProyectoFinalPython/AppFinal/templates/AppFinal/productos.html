@@ -13,6 +13,12 @@
     
     {% block Contenido %}
     <br> <br> <br> 
+
+    {% if request.user.is_authenticated and  request.user.rol == owner %}
+        <a href="/nuevoProducto" class="btn btn-primary">Nuevo Producto</a>
+                  
+    {% endif %}
+
     {% if messages %}
         <div class="alert alert-warning" alert-{{ message.tags }}" role="alert">
         {% for message in messages  %}
@@ -38,6 +44,10 @@
                   <a href="/compra" class="btn btn-primary">Comprar</a>
                   <a href="/detalleproductos/{{producto.id}}/" class="btn btn-primary">Detalles</a>
                   <a href="/addWishlist/{{producto.id}}/" class="btn btn-light fw500" role="button" aria-disabled="true">Add to Wish List</a>
+                  {% if request.user.rol == owner %}
+                  <a href="/eliminarProducto/{{producto.id}}/" class="btn btn-primary">Eliminar</a>
+                  <a href="/actualizarProducto/{{producto.id}}/" class="btn btn-primary">Actualizar</a>
+                {% endif %}  
                   
                 {% else %}
                   
@@ -49,6 +59,6 @@
                 </div>
             </div>
     
-        {% endif %}
+            {% endif %}
         {% endfor %}
-        {% endblock %}
+    {% endblock %}
