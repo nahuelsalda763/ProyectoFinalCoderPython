@@ -41,19 +41,18 @@
 
 
                 {% if request.user.is_authenticated %}
-                  <a href="/compra" class="btn btn-primary">Comprar</a>
-                  <a href="/detalleproductos/{{producto.id}}/" class="btn btn-primary">Detalles</a>
-                  <a href="/addWishlist/{{producto.id}}/" class="btn btn-light fw500" role="button" aria-disabled="true">Add to Wish List</a>
+                   <a href="/detalleproductos/{{producto.id}}/" class="btn btn-primary">Detalles</a>
+                  
                   {% if request.user.rol == owner %}
                   <a href="/eliminarProducto/{{producto.id}}/" class="btn btn-primary">Eliminar</a>
                   <a href="/actualizarProducto/{{producto.id}}/" class="btn btn-primary">Actualizar</a>
                 {% endif %}  
                   
                 {% else %}
-                  
+                  <a href="/compra" class="btn btn-primary">Comprar</a>
                   <a href="/comprafallida" class="btn btn-primary">Comprar</a>
                   <a href="/detalleproductos/{{producto.id}}/" class="btn btn-primary">Detalles</a>
-                
+                  <a href="/addWishlist/{{producto.id}}/" class="btn btn-light fw500" role="button" aria-disabled="true">Add to Wish List</a>
                 
               {% endif %}
                 </div>
