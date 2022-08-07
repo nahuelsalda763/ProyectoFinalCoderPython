@@ -1,37 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>logout</title>
-</head>
-<body>
 
     {% extends "AppFinal/padre.html" %}
     {% block Contenido %}
     <section class="py-5">
         <div class="container my-5">
             
-                    <ul>
-                        <a class="nav-link"   href="{% url 'Index' %}"}>Inicio</a></li>
-                        <a class="nav-link" href="{% url 'Actualizar' user.id %}"}>Actualizar Perfil</a></li>
-                        
-                        {% if request.user.rol == owner %}
-                            <a class="nav-link"   href="{% url 'Productos' %}"}>Administracion Productos</a></li>
-                        {% else %}
-                            <a class="nav-link"   href="{% url 'WishList' %}"}>WishList</a></li>
-                        {% endif %}
-                    </ul>
-                    <ul>
-                        <li>User: {{user.username}}</li>
-                        <li>Email: {{user.email}}</li>
-                        <li>Nombre: {{user.first_name}}</li>
+            <ul>
+                <a class="nav-link"   href="{% url 'Index' %}"}>Inicio</a></li>
+                <a class="nav-link" href="{% url 'Actualizar' user.id %}"}>Actualizar Perfil</a></li>
+            </ul>
+            {% if request.user.client.rol == 'owner' %}
+                <ul>
+                    <a class="nav-link"   href="{% url 'Productos' %}"}>Administracion Productos</a></li>
+                </ul>
+            {% else %}
+                <ul>
+                    <a class="nav-link"   href="{% url 'WishList' %}"}>WishList</a></li>
+                </ul>
+            {% endif %}
+        
+            <ul>
+                <li>User: {{user.username}}</li>
+                <li>Email: {{user.email}}</li>
+                <li>Nombre: {{user.first_name}}</li>
+                <li>rol: {{client.rol}}</li>
 
-                    </ul>   
+            </ul>   
             
         </div>
     </section>
     {% endblock %}
-</body>
-</html>

@@ -28,6 +28,7 @@
                         
                         <li class="nav-item" ><a class="nav-link active" style= "color: #020202" aria-current="page" href="{% url 'Index' %}">Home</a></li>
                         <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Busqueda' %}"}>Busqueda</a></li>
+                        <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Productos' %}"}>Productos</a></li>
                         <li class="nav-item" ><a class="nav-link" style= "color: #020202"href="{% url 'Registrarse' %}">Registrarse</a></li>
                         <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'IniciarSesion' %}">Iniciar Sesion</a></li>
                         <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Reseñas' %}"}>Reseñas</a></li>
@@ -36,11 +37,11 @@
                             <li class="nav-item"><a class="nav-link"  style= "color: #020202" href="{% url 'Perfil' user.id %}"}>Perfil</a></li>
                             <li class="nav-item"><a class="nav-link"  style= "color: #020202" href="{% url 'CerrarSesion' %}"}>Cerrar Sesion</a></li>
                             
-                            {% if request.user.rol == owner %}
+                            {% if request.user.client.rol == 'owner' %}
                                 <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Productos' %}"}>Administrar Productos</a></li>
                             {% else %}
                                 <li class="nav-item"><a class="nav-link" style= "color: #020202"  href="{% url 'WishList' %}"}>WishList</a></li>
-                                <li class="nav-item" ><a class="nav-link" style= "color: #020202" href="{% url 'Productos' %}"}>Productos</a></li>
+                                
                     
                             {% endif %}
 
